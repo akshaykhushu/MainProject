@@ -2,6 +2,7 @@ package com.example.android.mainprojectv2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,11 +21,26 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    public static final String MyPREFERENCES = "MyPrefs2";
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        neww.Prefs = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed2 = neww.Prefs.edit();
+        ed2.clear();
+        ed2.commit();
+        sports.Prefs = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sports.Prefs.edit();
+        ed.clear();
+        ed.commit();
     }
 
     public void contactDeveloper(View view){

@@ -43,7 +43,7 @@ public class sports extends AppCompatActivity {
     private int ChelseaPicCounter = 0;
     private int IndiaPicCounter = 0;
     public String bill3 = "";
-    SharedPreferences Prefs;
+    public static SharedPreferences Prefs;
     public static final String MyPREFERENCES = "MyPrefs";
 
     @Override
@@ -53,17 +53,7 @@ public class sports extends AppCompatActivity {
         Prefs = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         setContentView(R.layout.activity_sports);
         SharedPreferences.Editor ed2 = Prefs.edit();
-        /*numberOfArsenal=0;
-        numberOfAustralia=0;
-        numberOfIndia=0;
-        numberOfMunich=0;
-        numberOfChelsea=0;
-        numberOfManUtd=0;
-        numberOfRealMadrid=0;
-        numberOfBarca=0;
-        cost=0;
-        */
-        ed2.putString("Arse", String.valueOf(numberOfArsenal));
+        /*ed2.putString("Arse", String.valueOf(numberOfArsenal));
         ed2.putString("Aus", String.valueOf(numberOfAustralia));
         ed2.putString("ManUtd", String.valueOf(numberOfManUtd));
         ed2.putString("Ind", String.valueOf(numberOfIndia));
@@ -73,6 +63,17 @@ public class sports extends AppCompatActivity {
         ed2.putString("Barca", String.valueOf(numberOfBarca));
         ed2.putString("TotalPrice", String.valueOf(cost));
         ed2.commit();
+        */
+
+        String Ars1 = Prefs.getString("Arse", String.valueOf(numberOfArsenal));
+        String Aus1 = Prefs.getString("Aus", String.valueOf(numberOfAustralia));
+        String ManUtd1 = Prefs.getString("ManUtd", String.valueOf(numberOfManUtd));
+        String Ind1 = Prefs.getString("Ind", String.valueOf(numberOfIndia));
+        String Chelsea1 = Prefs.getString("Chelsea", String.valueOf(numberOfChelsea));
+        String Munich1 = Prefs.getString("Munich", String.valueOf(numberOfMunich));
+        String Madrid1 = Prefs.getString("RealMadrid", String.valueOf(numberOfRealMadrid));
+        String Barca1 = Prefs.getString("Barca", String.valueOf(numberOfBarca));
+        String cost1 = Prefs.getString("TotalPrice", String.valueOf(numberOfArsenal));
         ((TextView) findViewById(R.id.ArsenalQuantity)).setText(String.valueOf(numberOfArsenal));
         ((TextView) findViewById(R.id.AustraliaQuantity)).setText(String.valueOf(numberOfAustralia));
         ((TextView) findViewById(R.id.IndiaQuantity)).setText(String.valueOf(numberOfIndia));
@@ -135,7 +136,7 @@ public class sports extends AppCompatActivity {
         savedInstanceState.putDouble("TotalPrice", cost);
     }
 
-    @Override
+   /* @Override
     public void onResume() {
         Log.v("Sports:", "onResume");
         super.onResume();
@@ -176,7 +177,7 @@ public class sports extends AppCompatActivity {
         tcost.setText(ncost);
         cost = Double.valueOf(ncost);
     }
-
+*/
 
     /*@Override
     public void onRestart(){
@@ -211,39 +212,20 @@ public class sports extends AppCompatActivity {
     }
 */
 
-   /* @Override
+    /*@Override
     public void onStart(){
         super.onStart();
-        numberOfArsenal = 0;
-        String nArsenal = Prefs.getString("Arse","0");
-        TextView tArsenal = (TextView) findViewById(R.id.ArsenalQuantity);
-        tArsenal.setText(nArsenal);
-        String nManUtd = Prefs.getString("ManUtd","0");
-        TextView tManUtd = (TextView) findViewById(R.id.ManUtdQuantity);
-        tManUtd.setText(nManUtd);
-        String nChelsea = Prefs.getString("Chelsea","0");
-        TextView tChelsea = (TextView) findViewById(R.id.ChelseaQuantity);
-        tChelsea.setText(nChelsea);
-        String nRealMadrid = Prefs.getString("RealMadrid","0");
-        TextView tRealMadrid = (TextView) findViewById(R.id.RealMadridQuantity);
-        tRealMadrid.setText(nRealMadrid);
-        String nMunich = Prefs.getString("Munich","0");
-        TextView tMunich = (TextView) findViewById(R.id.MunichQuantity);
-        tMunich.setText(nMunich);
-        String nIndia = Prefs.getString("Ind","0");
-        TextView tIndia = (TextView) findViewById(R.id.IndiaQuantity);
-        tIndia.setText(nIndia);
-        String nAustralia = Prefs.getString("Aus","0");
-        TextView tAustralia = (TextView) findViewById(R.id.AustraliaQuantity);
-        tAustralia.setText(nAustralia);
-        String nBarca = Prefs.getString("Barca","0");
-        TextView tBarca = (TextView) findViewById(R.id.BarcaQuantity);
-        tBarca.setText(nBarca);
-        String ncost = Prefs.getString("TotalPrice","0");
-        TextView tcost = (TextView) findViewById(R.id.totalPrice);
-        tcost.setText(ncost);
-    }
-*/
+        numberOfArsenal = Double.valueOf(((TextView) findViewById(R.id.ArsenalQuantity)).getText().toString());
+        numberOfAustralia = Double.valueOf(((TextView) findViewById(R.id.AustraliaQuantity)).getText().toString());
+        numberOfManUtd = Double.valueOf(((TextView) findViewById(R.id.ManUtdQuantity)).getText().toString());
+        numberOfIndia = Double.valueOf(((TextView) findViewById(R.id.IndiaQuantity)).getText().toString());
+        numberOfChelsea = Double.valueOf(((TextView) findViewById(R.id.ChelseaQuantity)).getText().toString());
+        numberOfRealMadrid = Double.valueOf(((TextView) findViewById(R.id.RealMadridQuantity)).getText().toString());
+        numberOfMunich = Double.valueOf(((TextView) findViewById(R.id.MunichQuantity)).getText().toString());
+        numberOfBarca = Double.valueOf(((TextView) findViewById(R.id.BarcaQuantity)).getText().toString());
+        cost = Double.valueOf(((TextView) findViewById(R.id.totalPrice)).getText().toString());
+    }*/
+
     @Override
     public void onStop(){
         Log.v("Sports:", "onStop");

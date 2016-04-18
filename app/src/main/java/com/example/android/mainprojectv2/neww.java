@@ -47,17 +47,17 @@ public class neww extends AppCompatActivity {
     public static String bill = "";
     public static double totalcost = 0.0;
     public String bill2 = "";
-    SharedPreferences Prefs;
-    //public static final String MyPREFERENCES = "MyPrefs2";
+    public static SharedPreferences Prefs;
+    public static final String MyPREFERENCES = "MyPrefs2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v("Neww","onCreate method running");
         setContentView(R.layout.activity_neww);
-        Prefs = getSharedPreferences("MyPrefs2", Context.MODE_PRIVATE);
+        Prefs = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         SharedPreferences.Editor ed2 = Prefs.edit();
-        ed2.putString("Apple", String.valueOf(numberOfApples));
+        /*ed2.putString("Apple", String.valueOf(numberOfApples));
         ed2.putString("Banana", String.valueOf(numberOfBananas));
         ed2.putString("Grapes", String.valueOf(numberOfGrapes));
         ed2.putString("Strawberry", String.valueOf(numberOfStrawberry));
@@ -66,15 +66,23 @@ public class neww extends AppCompatActivity {
         ed2.putString("Pomegranate", String.valueOf(numberOfPomegranate));
         ed2.putString("Oranges", String.valueOf(numberOfOranges));
         ed2.putString("TotalPrice", String.valueOf(cost));
-        ed2.commit();
-        ((TextView) findViewById(R.id.appleQuantity)).setText(String.valueOf(numberOfApples));
-        ((TextView) findViewById(R.id.bananaQuantity)).setText(String.valueOf(numberOfBananas));
-        ((TextView) findViewById(R.id.strawberryQuantity)).setText(String.valueOf(numberOfStrawberry));
-        ((TextView) findViewById(R.id.pineappleQuantity)).setText(String.valueOf(numberOfPineapple));
-        ((TextView) findViewById(R.id.pomegranateQuantity)).setText(String.valueOf(numberOfPomegranate));
-        ((TextView) findViewById(R.id.grapesQuantity)).setText(String.valueOf(numberOfGrapes));
-        ((TextView) findViewById(R.id.cherryQuantity)).setText(String.valueOf(numberOfCherry));
-        ((TextView) findViewById(R.id.orangeQuantity)).setText(String.valueOf(numberOfOranges));
+        ed2.commit();*/
+        String orange1 = Prefs.getString("Oranges",String.valueOf(numberOfOranges));
+        String apple1 = Prefs.getString("Apple",String.valueOf(numberOfApples));
+        String banana1 = Prefs.getString("Banana",String.valueOf(numberOfBananas));
+        String pineapple1 = Prefs.getString("Pineapple",String.valueOf(numberOfPineapple));
+        String pomegranate1 = Prefs.getString("Pomegranate",String.valueOf(numberOfPomegranate));
+        String cherry1 = Prefs.getString("Cherry",String.valueOf(numberOfCherry));
+        String grapes1 = Prefs.getString("Grapes",String.valueOf(numberOfGrapes));
+        String strawberry1 = Prefs.getString("Strawberry",String.valueOf(numberOfStrawberry));
+        ((TextView) findViewById(R.id.appleQuantity)).setText(apple1);//.setText(String.valueOf(numberOfApples));
+        ((TextView) findViewById(R.id.bananaQuantity)).setText(banana1);
+        ((TextView) findViewById(R.id.strawberryQuantity)).setText(strawberry1);
+        ((TextView) findViewById(R.id.pineappleQuantity)).setText(pineapple1);
+        ((TextView) findViewById(R.id.pomegranateQuantity)).setText(pomegranate1);
+        ((TextView) findViewById(R.id.grapesQuantity)).setText(grapes1);
+        ((TextView) findViewById(R.id.cherryQuantity)).setText(cherry1);
+        ((TextView) findViewById(R.id.orangeQuantity)).setText(orange1);//.setText(String.valueOf(numberOfOranges));
         ((TextView) findViewById(R.id.totalPrice)).setText(String.valueOf(cost));
     }
 
@@ -128,7 +136,7 @@ public class neww extends AppCompatActivity {
         savedInstanceState.putDouble("totalPrice", cost);
     }
 
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
         Log.v("Neww", "onResume Method running");
@@ -170,7 +178,7 @@ public class neww extends AppCompatActivity {
         tcost.setText(ncost);
         cost = Double.valueOf(ncost);
     }
-
+*/
     /*@Override
     public void onPause(){
         super.onPause();
@@ -197,6 +205,19 @@ public class neww extends AppCompatActivity {
         ed.commit();
     }*/
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        numberOfApples = Double.valueOf(((TextView) findViewById(R.id.appleQuantity)).getText().toString());
+        numberOfBananas = Double.valueOf(((TextView) findViewById(R.id.bananaQuantity)).getText().toString());
+        numberOfGrapes = Double.valueOf(((TextView) findViewById(R.id.grapesQuantity)).getText().toString());
+        numberOfOranges = Double.valueOf(((TextView) findViewById(R.id.orangeQuantity)).getText().toString());
+        numberOfCherry = Double.valueOf(((TextView) findViewById(R.id.cherryQuantity)).getText().toString());
+        numberOfPomegranate = Double.valueOf(((TextView) findViewById(R.id.pomegranateQuantity)).getText().toString());
+        numberOfPineapple = Double.valueOf(((TextView) findViewById(R.id.pineappleQuantity)).getText().toString());
+        numberOfStrawberry = Double.valueOf(((TextView) findViewById(R.id.strawberryQuantity)).getText().toString());
+        cost = Double.valueOf(((TextView) findViewById(R.id.totalPrice)).getText().toString());
+    }
     @Override
     public void onStop(){
         super.onStop();
@@ -225,26 +246,26 @@ public class neww extends AppCompatActivity {
 
     public void checkOut(View view){
         if (numberOfApples > 0) {
-            bill = "\nApple: " + numberOfApples + " Kg" + " = " + costOfApples * numberOfApples;
+            neww.bill = neww.bill + "\nApple: " + numberOfApples + " Kg" + " = " + costOfApples * numberOfApples;
         }
         if (numberOfBananas > 0)
-            bill = bill + "\nBanana: " + numberOfBananas + " Kg" + " = " + costOfBananas*numberOfBananas;
+            neww.bill = neww.bill + "\nBanana: " + numberOfBananas + " Kg" + " = " + costOfBananas*numberOfBananas;
         if (numberOfCherry > 0)
-            bill = bill + "\nCherry: " + numberOfCherry + " Kg" + " = " + costOfCherry*numberOfCherry;
+            neww.bill = neww.bill + "\nCherry: " + numberOfCherry + " Kg" + " = " + costOfCherry*numberOfCherry;
         if (numberOfGrapes > 0)
-            bill = bill + "\nGrapes: " + numberOfGrapes + " Kg" + " = " + costOfGrapes*numberOfGrapes;
+            neww.bill = neww.bill + "\nGrapes: " + numberOfGrapes + " Kg" + " = " + costOfGrapes*numberOfGrapes;
         if (numberOfOranges > 0)
-            bill = bill + "\nOranges: " + numberOfOranges + " Kg" + " = " + costOfOranges*numberOfOranges;
+            neww.bill = neww.bill + "\nOranges: " + numberOfOranges + " Kg" + " = " + costOfOranges*numberOfOranges;
         if (numberOfPineapple > 0)
-            bill = bill + "\nPineapple: " + numberOfPineapple + " Kg" + " = " + costOfPineapple*numberOfPineapple;
+            neww.bill = neww.bill + "\nPineapple: " + numberOfPineapple + " Kg" + " = " + costOfPineapple*numberOfPineapple;
         if (numberOfPomegranate > 0)
-            bill = bill + "\nPomegranate: " + numberOfPomegranate + " Kg" + " = " + costOfPomegranate*numberOfPomegranate;
+            neww.bill = neww.bill + "\nPomegranate: " + numberOfPomegranate + " Kg" + " = " + costOfPomegranate*numberOfPomegranate;
         if (numberOfStrawberry > 0)
-            bill = bill + "\nStrawberry: " + numberOfStrawberry + " Kg" + " = " + costOfStrawberry*numberOfStrawberry;
-        totalcost = totalcost + cost;
+            neww.bill = neww.bill + "\nStrawberry: " + numberOfStrawberry + " Kg" + " = " + costOfStrawberry*numberOfStrawberry;
+        neww.totalcost = neww.totalcost + cost;
         Log.v("Total Cost is ", String.valueOf(totalcost));
         Intent intent = new Intent(this,finalmap.class);
-        String bills = bill;
+        String bills = neww.bill;
         intent.putExtra(EXTRA_MESSAGE, bills);
         intent.putExtra(EXTRA_MESSAGE2, String.valueOf(totalcost));
         startActivity(intent);
